@@ -1,17 +1,10 @@
-'use strict';
-const Generator = require('yeoman-generator');
-const chalk = require('chalk');
-const yosay = require('yosay');
+
+const Generator = require('../base-generator');
 
 module.exports = class extends Generator {
-  async prompting () {
-    // Have Yeoman greet the user.
-    this.log(
-      yosay(
-        `Welcome to the epic ${chalk.red(
-          'generator-lazyfabric-force'
-        )} generator!`
-      )
-    );
+  initializing() {
+    this.composeWith(require.resolve('../base'));
+    this.composeWith(require.resolve('../jest'));
+    this.composeWith(require.resolve('../babel'));
   }
 };
