@@ -9,5 +9,5 @@ module.exports = {
   // coverageDirectory: null,
   <%_ } _%>
   // The test environment that will be used for testing
-  testEnvironment: "<%= testEnvironment %>",
+  testEnvironment: '<%= testEnvironment %>',
 };

@@ -1,4 +1,3 @@
-
 const ASTQuery = require('ast-query');
 const Generator = require('../base-generator');
 const { formatCode } = require('../util');
@@ -12,16 +11,18 @@ module.exports = class extends Generator {
   _updateESLint(file) {
     this._updatePackageJSON({
       devDependencies: {
-        'babel-eslint': '^10.0.3',
-      },
+        'babel-eslint': '^10.0.3'
+      }
     });
 
     const src = this.fs.read(file);
     const tree = ASTQuery(src);
 
-    tree.assignment('module.exports')
+    tree
+      .assignment('module.exports')
       .value()
-      .key('parser').value("'babel-eslint'");
+      .key('parser')
+      .value("'babel-eslint'");
 
     this.fs.write(this.destinationPath(file), formatCode(tree.toString()));
   }
@@ -29,8 +30,8 @@ module.exports = class extends Generator {
   _updateJest() {
     this._updatePackageJSON({
       devDependencies: {
-        'babel-jest': '^24.9.0',
-      },
+        'babel-jest': '^24.9.0'
+      }
     });
   }
 
@@ -44,7 +45,10 @@ module.exports = class extends Generator {
     }
 
     this._updatePackageJSON();
-    this.fs.copy(this.templatePath(babelConfig), this.destinationPath(babelConfig));
+    this.fs.copy(
+      this.templatePath(babelConfig),
+      this.destinationPath(babelConfig)
+    );
     this.fs.copy(this.templatePath(srcPath), this.destinationPath(srcPath));
   }
 

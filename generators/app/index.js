@@ -1,4 +1,3 @@
-
 const Generator = require('../base-generator');
 
 module.exports = class extends Generator {
